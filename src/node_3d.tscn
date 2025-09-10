@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnpd2l6vp053k"]
+[gd_scene load_steps=13 format=3 uid="uid://dnpd2l6vp053k"]
 
+[ext_resource type="Script" uid="uid://dl40tg0ivldfk" path="res://test_move.gd" id="1_a0tk4"]
 [ext_resource type="Shader" uid="uid://mknm08d75hop" path="res://NormalEdgeDetectShader/edgedetect.gdshader" id="1_noarx"]
 [ext_resource type="Material" uid="uid://3tdk6l0x8tq1" path="res://939emit.tres" id="2_a0tk4"]
 
@@ -10,6 +11,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_noarx"]
 render_priority = 0
 shader = ExtResource("1_noarx")
+shader_parameter/line_color = Color(0.377919, 0.377919, 0.377919, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_jka67"]
 material = SubResource("ShaderMaterial_noarx")
@@ -29,7 +31,7 @@ material = ExtResource("2_a0tk4")
 background_mode = 1
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
-fog_density = 0.4
+fog_density = 0.5
 fog_depth_begin = 1.0
 fog_depth_end = 5.0
 
@@ -44,7 +46,8 @@ transform = Transform3D(11.9536, 0, 0, 0, 12.4797, 0, 0, 0, 1, 5.48527, 0, 0)
 mesh = SubResource("BoxMesh_a0tk4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.619491, 1.93031, 4.62545)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.698976, 1.93031, 0.598463)
+script = ExtResource("1_a0tk4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.26252)
@@ -72,3 +75,9 @@ mesh = SubResource("QuadMesh_noarx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tereu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01864, 3.87931, 3.00171)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01864, 3.87931, -2.53777)

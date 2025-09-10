@@ -11,12 +11,12 @@ render_mode unshaded, depth_test_disabled;
 //#define LINE_ART
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+uniform vec3 line_color: source_color = vec3(1.0, 1.0, 1.0);
 
 #if CURRENT_RENDERER == RENDERER_FORWARD_PLUS && defined(LINE_ART)
 uniform sampler2D NORMAL_TEXTURE : hint_normal_roughness_texture, filter_linear_mipmap;
 
 uniform float edge_threshold = 0.2;
-uniform vec3 line_color: source_color = vec3(1.0, 1.0, 1.0);
 uniform vec3 background_color: source_color = vec3(0.0, 0.0, 0.0);
 #endif
 
@@ -83,6 +83,6 @@ void fragment() {
 		ALBEDO = background_color;
 	}
 #else
-	ALBEDO = vec3(edge);
+	ALBEDO = vec3(edge * line_color);
 #endif
 }
