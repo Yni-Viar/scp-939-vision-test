@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://dnpd2l6vp053k"]
+
+[ext_resource type="Shader" uid="uid://mknm08d75hop" path="res://NormalEdgeDetectShader/edgedetect.gdshader" id="1_noarx"]
+[ext_resource type="Material" uid="uid://3tdk6l0x8tq1" path="res://939emit.tres" id="2_a0tk4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_noarx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_noarx"]
+render_priority = 0
+shader = ExtResource("1_noarx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_jka67"]
+material = SubResource("ShaderMaterial_noarx")
+size = Vector2(2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5arm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wc5p8"]
+material = SubResource("StandardMaterial3D_i5arm")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jsk3o"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_noarx"]
+material = ExtResource("2_a0tk4")
+
+[sub_resource type="Environment" id="Environment_tereu"]
+background_mode = 1
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.4
+fog_depth_begin = 1.0
+fog_depth_end = 5.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(16.5777, 0, 0, 0, 0.178974, 0, 0, 0, 10.0452, 0, 0, 0)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.9536, 0, 0, 0, 12.4797, 0, 0, 0, 1, 5.48527, 0, 0)
+mesh = SubResource("BoxMesh_a0tk4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.619491, 1.93031, 4.62545)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.26252)
+mesh = SubResource("QuadMesh_jka67")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Camera3D"]
+light_color = Color(1, 0, 0, 1)
+light_energy = 4.0
+omni_range = 40.96
+omni_attenuation = 0.0
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24373, 1.34398, -3.09472)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_wc5p8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_jsk3o")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("QuadMesh_noarx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tereu")

@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://3tdk6l0x8tq1"]
+
+[ext_resource type="Texture2D" uid="uid://dtu01qwbo3kgc" path="res://939target.png" id="1_mdg3c"]
+
+[resource]
+render_priority = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+no_depth_test = true
+albedo_texture = ExtResource("1_mdg3c")
+emission = Color(1, 1, 1, 1)
+emission_texture = ExtResource("1_mdg3c")
+billboard_mode = 1
