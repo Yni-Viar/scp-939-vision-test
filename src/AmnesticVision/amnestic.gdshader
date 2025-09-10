@@ -17,7 +17,7 @@ void fragment() {
 	vec3 color = texture(SCREEN_TEXTURE, uv).rgb;
 	float noise = random(uv + TIME) * 2.0 - 1.0;
 	color += noise * noise_intensity * 0.015625;
-	//Apply contrast
+	//Apply contrast (taken from Godot engine code)
 	color = mix(vec3(0.5), color, contrast);
 	ALBEDO = color;
 }
