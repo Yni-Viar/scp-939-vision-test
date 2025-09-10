@@ -1,20 +1,27 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnpd2l6vp053k"]
+[gd_scene load_steps=16 format=3 uid="uid://dnpd2l6vp053k"]
 
 [ext_resource type="Script" uid="uid://dl40tg0ivldfk" path="res://test_move.gd" id="1_a0tk4"]
-[ext_resource type="Shader" uid="uid://mknm08d75hop" path="res://NormalEdgeDetectShader/edgedetect.gdshader" id="1_noarx"]
 [ext_resource type="Material" uid="uid://3tdk6l0x8tq1" path="res://939emit.tres" id="2_a0tk4"]
+[ext_resource type="Material" uid="uid://bsfiqbctxrb4a" path="res://939.tres" id="2_jka67"]
+[ext_resource type="Shader" uid="uid://bh73ik7u3sjtb" path="res://AmnesticVision/amnestic.gdshader" id="2_r3fl7"]
+[ext_resource type="Script" uid="uid://ctpngks3uhu8s" path="res://AmnesticVision/amnestic_progress.gd" id="4_i5arm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_noarx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_noarx"]
+[sub_resource type="QuadMesh" id="QuadMesh_wc5p8"]
+material = ExtResource("2_jka67")
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jka67"]
 render_priority = 0
-shader = ExtResource("1_noarx")
-shader_parameter/line_color = Color(0.377919, 0.377919, 0.377919, 1)
+shader = ExtResource("2_r3fl7")
+shader_parameter/noise_intensity = 1.0
+shader_parameter/contrast = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_jka67"]
-material = SubResource("ShaderMaterial_noarx")
+material = SubResource("ShaderMaterial_jka67")
 size = Vector2(2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5arm"]
@@ -46,16 +53,23 @@ transform = Transform3D(11.9536, 0, 0, 0, 12.4797, 0, 0, 0, 1, 5.48527, 0, 0)
 mesh = SubResource("BoxMesh_a0tk4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.698976, 1.93031, 0.598463)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.698976, 1.93031, 0.845152)
 script = ExtResource("1_a0tk4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.26252)
+[node name="939VisionEffect" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.168428)
+mesh = SubResource("QuadMesh_wc5p8")
+
+[node name="AmnesticEffect" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.168428)
+visible = false
 mesh = SubResource("QuadMesh_jka67")
+script = ExtResource("4_i5arm")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Camera3D"]
+visible = false
 light_color = Color(1, 0, 0, 1)
 light_energy = 4.0
 omni_range = 40.96
@@ -81,3 +95,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01864, 3.87931, 3.00171)
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01864, 3.87931, -2.53777)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

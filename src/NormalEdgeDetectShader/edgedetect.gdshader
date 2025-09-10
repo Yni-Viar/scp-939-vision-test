@@ -54,7 +54,7 @@ void fragment() {
 	vec3 ne = normalize_normal(texture(NORMAL_TEXTURE, uv + vec2(offset.x, -offset.y)).rgb);
 	vec3 sw = normalize_normal(texture(NORMAL_TEXTURE, uv + vec2(-offset.x, offset.y)).rgb);
 	vec3 se = normalize_normal(texture(NORMAL_TEXTURE, uv + vec2(offset.x, offset.y)).rgb);
-	
+
 	mat2 surrounding_pixels = mat2(
 		vec2(length(nw - normal), length(ne - normal)),
 		vec2(length(sw - normal), length(se - normal))
