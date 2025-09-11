@@ -1,17 +1,25 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnpd2l6vp053k"]
+[gd_scene load_steps=18 format=3 uid="uid://dnpd2l6vp053k"]
 
 [ext_resource type="Script" uid="uid://dl40tg0ivldfk" path="res://test_move.gd" id="1_a0tk4"]
 [ext_resource type="Material" uid="uid://3tdk6l0x8tq1" path="res://939emit.tres" id="2_a0tk4"]
-[ext_resource type="Material" uid="uid://bsfiqbctxrb4a" path="res://939.tres" id="2_jka67"]
+[ext_resource type="Shader" uid="uid://csqj250p47dcm" path="res://MatcapShader/matcap.gdshader" id="2_jka67"]
 [ext_resource type="Shader" uid="uid://bh73ik7u3sjtb" path="res://AmnesticVision/amnestic.gdshader" id="2_r3fl7"]
 [ext_resource type="Script" uid="uid://ctpngks3uhu8s" path="res://AmnesticVision/amnestic_progress.gd" id="4_i5arm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_noarx"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wc5p8"]
+albedo_color = Color(1, 1, 0, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
+material = SubResource("StandardMaterial3D_wc5p8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jsk3o"]
+render_priority = 0
+shader = ExtResource("2_jka67")
 
 [sub_resource type="QuadMesh" id="QuadMesh_wc5p8"]
-material = ExtResource("2_jka67")
+material = SubResource("ShaderMaterial_jsk3o")
 size = Vector2(2, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jka67"]
@@ -53,11 +61,11 @@ transform = Transform3D(11.9536, 0, 0, 0, 12.4797, 0, 0, 0, 1, 5.48527, 0, 0)
 mesh = SubResource("BoxMesh_a0tk4")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.698976, 1.93031, 0.845152)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.792895, 1.93031, 1.2054)
 script = ExtResource("1_a0tk4")
 
 [node name="939VisionEffect" type="MeshInstance3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.168428)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.202243)
 mesh = SubResource("QuadMesh_wc5p8")
 
 [node name="AmnesticEffect" type="MeshInstance3D" parent="Camera3D"]
